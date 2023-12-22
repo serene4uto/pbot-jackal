@@ -1,0 +1,16 @@
+<robot>
+  <!-- This file is an example that can be included from jackal.urdf.xacro
+       by setting the JACKAL_URDF_EXTRAS environment variable to the full
+       path of this file. -->
+
+
+
+  <link name="velodyne_vlp16_mount"></link>
+  <joint name="velodyne_vlp16_mount_joint" type="fixed">
+    <parent link="front_mount" />
+    <child link="velodyne_vlp16_mount" />
+    <origin xyz="-0.03 0 0" rpy="0 0 0"/>
+  </joint>
+
+
+</robot>
