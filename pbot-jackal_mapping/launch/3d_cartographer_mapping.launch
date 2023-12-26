@@ -1,0 +1,36 @@
+<launch>
+  <param name="/use_sim_time" value="false" />
+
+  <node pkg="um7" type="um7_driver" name="um7_imu" />
+
+  <!-- Filter raw gyro data into a usable IMU message -->
+  <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter">
+    <!-- This environment variable is populated by an env hook in the jackal_base
+         package. It looks for a user-generated mag config (eg, from running
+         the calibrate_compass script), and falls back on a default one. -->
+    <rosparam file="$(env JACKAL_MAG_CONFIG)" />
+    <rosparam>
+      gain: 0.1
+      zeta: 0.001
+      publish_tf: false
+    </rosparam>
+    <remap from="imu/data_raw" to="imu_um7/data" />
+  </node>
+
+  <node name="cartographer_node" pkg="cartographer_ros"
+      type="cartographer_node" args="
+          -configuration_directory $(find pbot-jackal_mapping)/configs
+          -configuration_basename 3d_cartographer_cfg.lua"
+      output="screen">
+
+    <remap from="points2" to="velodyne_points" />
+    <!-- <remap from="imu" to="/imu_um7/data" /> -->
+    <remap from="imu" to="/imu/data" />
+  </node>
+  
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+      type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
+
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find pbot-jackal_mapping)/configs/3d_cartographer.rviz" />
+</launch>
