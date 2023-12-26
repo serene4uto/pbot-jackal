@@ -16,7 +16,7 @@
  </node>
 
  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" >
-  <arg name="frame_id" value="front_laser" />
+  <!-- <arg name="frame_id" value="front_laser" /> -->
   <!-- <remap from="scan" to="front/scan" /> -->
  </include>
 
