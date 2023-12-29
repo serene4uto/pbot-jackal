@@ -2,4 +2,4 @@
 # so nothing need be specified here; the defaults as given
 # in the URDF suffice to define this config.
 
-JACKAL_URDF_EXTRAS="/workspaces/Project_Jackal_old/pbot_ws/src/pbot-jackal/pbot-jackal_description/urdf/pbot_jackal_additional_parts.urdf.xacro"
+JACKAL_URDF_EXTRAS="$(find pbot-jackal_description)/urdf/pbot_jackal_additional_parts.urdf.xacro"
