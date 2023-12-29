@@ -1,0 +1,4 @@
+<launch>
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find pbot-jackal_mapping)/configs/3d_cartographer.rviz" />
+</launch>
