@@ -1,6 +1,11 @@
 <launch>
   <param name="/use_sim_time" value="false" />
 
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" >
+    <arg name="frame_id" value="front_laser" />
+    <!-- <remap from="scan" to="front/scan" /> -->
+  </include>
+
   <!-- Filter raw gyro data into a usable IMU message -->
   <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter">
     <!-- This environment variable is populated by an env hook in the jackal_base
