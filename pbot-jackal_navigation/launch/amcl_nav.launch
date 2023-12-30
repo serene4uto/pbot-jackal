@@ -12,7 +12,7 @@
      zeta: 0.001
      publish_tf: false
    </rosparam>
-   <!-- <remap from="imu/data_raw" to="imu_um7/data" /> -->
+   <remap from="imu/data_raw" to="imu_um7/data" />
  </node>
 
  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" >
